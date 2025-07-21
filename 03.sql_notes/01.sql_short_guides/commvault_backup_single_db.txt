@@ -1,0 +1,21 @@
+﻿1. In command line go to the Base subfolder in CV installation folder
+	cd "C:\Program Files\Commvault\ContentStore\Base"
+2. Run CvSQLAddInConfig.exe with correct parameter
+	for SQL 2008R2
+		CvSQLAddInConfig.exe /i 10
+	for SQL 2012
+		CvSQLAddInConfig.exe /i 11
+	for SQL 2014
+		CvSQLAddInConfig.exe /i 12
+	for SQL 2016 (SSMS v16)
+		CvSQLAddInConfig.exe /i 13
+	for SQL 2017 (SSMS v17)
+		CvSQLAddInConfig.exe /i 14
+	for SQL 2019 (SSMS v18)
+		CvSQLAddInConfig.exe /i 15
+3. Open SSMS, log to the instance - right click on the database (in case of databases in AG group go via Availability Databases) and choose Data Protection Tasks -> Backup
+4. You will be prompted to login with your CV credentials
+5. Choose needed options and click 'Run'
+
+Source: https://documentation.commvault.com/commvault/v11/article?p=18302.htm
+

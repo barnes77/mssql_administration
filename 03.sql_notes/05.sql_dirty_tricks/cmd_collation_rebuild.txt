@@ -1,0 +1,8 @@
+﻿Found on: https://spaghettidba.com/2011/05/26/changing-server-collation/
+Trace flag 3659 allows logging all errors to sql server logs
+Trace flag 4022 forces SQL Server to skip startup stored procedures (if you have any).
+Startup option “-m” forces single user mode.
+Startup option “-q” rebuilds all databases and contained objects into the specified collation, without reinstalling the instance.
+####################################
+sqlservr -m -T4022 -T3659 -q"new collation"
+

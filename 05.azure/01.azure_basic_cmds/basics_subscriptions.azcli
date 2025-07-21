@@ -1,0 +1,5 @@
+#show current subscription
+	az account show --output table
+ 
+#switch to subscription
+	az account set --subscription "MySub"

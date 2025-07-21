@@ -1,0 +1,14 @@
+﻿1. Check if you can connect with IP,port
+2. Check if you can connect with server\instancename
+3. Check if you can connect with server,port
+4. Check if you can connect with IP\instance name
+5. Check if you can telnet IP port
+6. Check if firewall rules are ok (inbound TCP port)
+7. In case of named instances
+	a. Check if Browser is running
+	b. Check if inbound UDP 1434 is enabled
+8. Check if DNS is resolved to IP
+9. Check if there are no duplicates of DNS: nbtstat -n
+10. Check if SPNs are correct
+11. Check if the instance is not hiden (CM -> Instance Properties)
+

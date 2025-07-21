@@ -1,0 +1,13 @@
+﻿.\setup.exe
+/ACTION="Uninstall"
+
+/QS *optional; will only show progress
+/Q *optional; won't show progress
+
+/INSTANCENAME=I01 
+
+/IACCEPTSQLSERVERLICENSETERMS 
+
+/FEATURES=SQLEngine,FullText,Conn 
+
+/SkipRules=RebootRequiredCheck	*undocumented; to be taken 

@@ -1,0 +1,6 @@
+#find all backup items (sql databases) in given backup policy
+	az backup policy list-associated-items --backup-management-type AzureWorkload -g MyRG -v MyVault -n MyPolicy --query "[].Name | sort (@)" -o table
+ 
+	az backup policy list-associated-items --backup-management-type AzureWorkload -g MyRG -v MyVault -n MyPolicy --query "[].properties.friendlyName | sort (@)" -o table
+ 
+	#az backup policy list-associated-items --backup-management-type AzureWorkload -g ebpr-rg-backup-prod-01 -v ebpr-we-asr-02 -n backup-db-sql-pr-01 --query "[?contains(name,'EMDM') || contains(name,'ERRP')].{Name:name,Status:properties.protectionStatus}" -o table

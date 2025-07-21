@@ -1,0 +1,21 @@
+﻿C:\Windows\System32> lodctr /q
+
+Performance Counter ID Queries [PERFLIB]:
+    Base Index: 0x00000737 (1847)
+    Last Counter Text ID: 0x00007200 (29184)
+    Last Help Text ID: 0x00007201 (29185)
+
+(...)
+
+[PerfDisk] Performance Counters (Disabled)
+    DLL Name: %SystemRoot%\System32\perfdisk.dll
+    Open Procedure: OpenDiskObject
+    Collect Procedure: CollectDiskObjectData
+    Close Procedure: CloseDiskObject
+
+(...)
+
+C:\Windows\System32> lodctr /e:PerfDisk
+
+https://social.technet.microsoft.com/wiki/contents/articles/19374.windows-performance-monitor-unable-to-add-these-counters.aspx
+

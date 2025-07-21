@@ -1,0 +1,2 @@
+#find all backup items (sql databases) that are unhealthy in terms of backups
+	az backup item list -g MyRG -v MyVault --backup-management-type AzureWorkload --workload-type MSSQL --query "[?properties.protectionStatus=='Unhealthy'].{Name:properties.friendlyName,Container:properties.containerName,Status:properties.protectionStatus}" -o table

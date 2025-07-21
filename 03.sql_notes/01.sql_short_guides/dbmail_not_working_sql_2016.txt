@@ -1,0 +1,24 @@
+﻿In case of SQL Server 2016 you can encounter an issue with dbmail not being able to send emails if there’s no .Net Framework 3.5 installed. It should have been fixed SP1 CU2 (13.0.4422.0) but over past few months I’ve seen it failing despite SQL server being a newer version.
+
+How to troubleshoot it?
+	1. Verify which .Net framework is installed on the server – you can use my PS script for that: PS_NetFramework_Brief (MPW).ps1 (in attachment, change .txt to .ps1)
+	2. Rule out issues with SMTP : log to the host and from there connect to SMTP server in order to send a test email – you need to type the commands manually (backspace is not allowed)
+	Substitute %smtpserver% with actual FQDN of SMTP and %domain.com% with actual domain name
+		telnet %smtpserver% 25
+		helo %domain.com%
+		mail from: sender@domain.com
+		rcpt to: recipient@domain.com
+		data
+		this is test
+		.
+		Quit
+	3. If you can send test email via telnet to SMTP and there’s no .NET Framework you can
+		a. Request installation of .Net Framework 3.5 – this requires a change ticket to Windows team and a reboot of the host
+		b. Add a config file for DBMail in the bin of MSSQL
+			§ FileName: DatabaseMail.exe.config
+			§ Filepath: C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Binn
+			§ Content: <?xml version="1.0" encoding="utf-8" ?>		 <configuration>		 <startup useLegacyV2RuntimeActivationPolicy="true">		 <supportedRuntime version="v4.0"/>			 <supportedRuntime version="v2.0.50727"/>		 </startup>		 </configuration>
+			§ Make sure to save it using Encoding: UTF-8
+			§ If you cannot save it directly from Notepad to the Bin, create it elsewhere and move to the Bin
+			§ Source: https://support.microsoft.com/en-us/topic/kb3186435-fix-sql-server-2016-database-mail-does-not-work-on-a-computer-that-does-not-have-the-net-framework-3-5-installed-or-stops-working-after-applying-sql-server-update-3480beb6-1329-74d6-0f3a-e8e3d893326c
+

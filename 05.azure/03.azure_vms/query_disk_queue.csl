@@ -1,0 +1,5 @@
+Perf
+| where ObjectName == "LogicalDisk"
+| where CounterName == "Current Disk Queue Length"
+| summarize avg(CounterValue) by bin(TimeGenerated, 15min), InstanceName, Computer, _ResourceId // bin is used to set the time gran to 15 minutes
+| render timechart

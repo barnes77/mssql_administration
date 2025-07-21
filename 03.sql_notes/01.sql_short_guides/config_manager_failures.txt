@@ -1,0 +1,24 @@
+﻿In case of errors:
+
+	"Cannot connect to WMI provider. You do not have permission or the server is unreachable. Note that you can only manage SQL Server 2005 and later servers with SQL Server Configuration Manager.
+	Invalid namespace [0x8004100e]"
+
+or
+
+	"Cannot connect to WMI provider. You do not have permission or the server is unreachable, Note that you can only manage SQL Server 2005 and later servers with SQL Server Configuration Manager.
+	Invalid class [0x80041010]"
+
+Open elevated CMD and go to following directory (where sqlmgmproviderxpsp2up.mof should be placed):
+
+	SQL2019	 C:\Program Files (x86)\Microsoft SQL Server\150\Shared
+	SQL2017	 C:\Program Files (x86)\Microsoft SQL Server\140\Shared
+	SQL2016	 C:\Program Files (x86)\Microsoft SQL Server\130\Shared
+	SQL2014	 C:\Program Files (x86)\Microsoft SQL Server\120\Shared
+	SQL2012	 C:\Program Files (x86)\Microsoft SQL Server\100\Shared
+	SQL2008R2 C:\Program Files (x86)\Microsoft SQL Server\100\Shared
+	SQL2008	 C:\Program Files (x86)\Microsoft SQL Server\100\Shared
+	SQL2005	 C:\Program Files (x86)\Microsoft SQL Server\90\Shared
+
+and run command:
+
+	mofcomp "sqlmgmproviderxpsp2up.mof"

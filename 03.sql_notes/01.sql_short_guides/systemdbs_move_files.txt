@@ -1,0 +1,57 @@
+﻿Step00: Preparations
+01. Create folder: X:\newpath
+02. Create folder X:\newpath2\Log if you want to move Errorlogs as well
+03. Grant full access to the folder to service accounts of SQL Server and SQL Agent
+ 
+Step01: Move msdb and model databases:
+01. For each file to be moved, run the following statement.
+	ALTER DATABASE model MODIFY FILE ( NAME = model , FILENAME = 'X:\newpath\model.mdf' ) --might be names modeldev
+	ALTER DATABASE model MODIFY FILE ( NAME = modellog , FILENAME = 'X:\newpath\modellog.ldf' )
+	ALTER DATABASE msdb MODIFY FILE ( NAME = MSDBData , FILENAME = 'X:\newpath\MSDBData.mdf' )
+	ALTER DATABASE msdb MODIFY FILE ( NAME = MSDBLog , FILENAME = 'X:\newpath\MSDBLog.ldf' )
+02. Stop the instance of SQL Server
+03. Move files to the new location
+04. Restart the instance of SQL Server
+	SELECT name, physical_name, state_desc FROM sys.master_files WHERE database_id = DB_ID('msdb') OR database_id = DB_ID('model');
+05. Verify that Service Broker is enabled for the msdb database by running the following query
+	SELECT is_broker_enabled FROM sys.databases WHERE name = N'msdb';
+ 
+Step02: Move master database:
+01. In SQL Server Configuration Manager edit the Startup Parameters for master databases:
+	-dX:\newpath\master.mdf;
+	-lX:\newpath\mastlog.ldf
+02. Stop the instance of SQL Server 
+03. Move the master.mdf and mastlog.ldf files to the new location.
+04. Restart the instance of SQL Server
+ 
+Step03: Move mssqlsystemresource database:
+01. Stop the instance of SQL Server
+02. Start the instance of SQL Server in master-only recovery modet
+	NET START MSSQLSERVER /f /T3608
+03. Via sqlcmd change alter the master database:
+	ALTER DATABASE mssqlsystemresource 
+	MODIFY FILE (NAME=data, FILENAME= 'X:\newpath\mssqlsystemresource.mdf');
+	GO
+	ALTER DATABASE mssqlsystemresource 
+	MODIFY FILE (NAME=log, FILENAME= 'X:\newpath\mssqlsystemresource.ldf');
+	GO
+04. Move the mssqlsystemresource.mdf and mssqlsystemresource.ldf files to the new location.
+05. Set the Resource database to read-only by running the following statement
+	ALTER DATABASE mssqlsystemresource SET READ_ONLY;
+	GO
+06. Stop the instance of SQL Server
+07. Restart the instance of SQL Server
+08. Verify the file change for the master database by running the following query
+	SELECT name, physical_name, state_desc FROM sys.master_files WHERE database_id = DB_ID('master');
+	GO
+ 
+Step04: Move SQL Server Error logs:
+01. In SQL Server Configuration Manager edit the Startup Parameters for master databases:
+	-eX:\newpath\ERRORLOG;
+02. Stop the instance of SQL Server 
+03. Restart the instance of SQL Server
+ 
+Step05: Move SQL Agent Error logs:
+01. Move the log file to a new folder via a stored procedure
+	exec msdb.dbo.sp_set_sqlagent_properties @errorlog_file=N'X:\newpath2\Log\SQLAGENT.OUT'
+02. Restart Agent

@@ -1,0 +1,11 @@
+﻿If you see in CV console that there’s a lot of jobs waiting for some particular client and you can see missing backups go to the earliest job and see the description.
+
+In case of Description: Waiting for the services on the client [%hostname%] to come online., verify that the host and SQL are online. If yes, go to Job details and then to events, open the event with yellow icon:
+
+Now if you will see error like that:
+Failed to start phase [Differential Backup] on [%hostname%] due to network error [Remote machine [%hostname%.domain.com]. The socket connect failed. Error returned [-1=CON211316/%hostname%.domain.com*%hostname%*8400: All proxies reported %hostname% as unreachable]. Check Network Connectivity.]. Will attempt to restart. Please check if this product's services are running on the remote host.
+
+This can mean at least two things:
+	1. The CV services need to be rebooted on the client, either via CommVault Process Manager from menu start or from services.msc. You can do it on your own, these services are quite safe to be rebooted.
+	2. The CV agent’s installation is corrupted/messed up. Then you need to ask Windows team to verify and re-install the CV agent on that host.
+

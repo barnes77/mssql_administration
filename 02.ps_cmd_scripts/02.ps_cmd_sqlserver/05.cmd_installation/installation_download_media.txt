@@ -1,0 +1,9 @@
+﻿.\*-SSEI-*.exe 
+ 
+/ACTION="Download" 
+ 
+/Q 
+ 
+/Mediatype="ISO" 
+ 
+/MediaPath="D:\AdminDB" *needs to be an absolute path

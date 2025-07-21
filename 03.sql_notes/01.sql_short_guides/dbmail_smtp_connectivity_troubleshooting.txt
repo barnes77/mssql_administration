@@ -1,0 +1,15 @@
+﻿Found on community.spiceworks.com/how_to/11-test-email-flow-using-smtp-commands
+####################################
+
+1. Install telnet in elevated PS console if it's not available already
+	Install-WindowsFeature -Name Telnet-Client
+2. Open CMD and type (don't use backspace - it's not recognized by SMTP server):
+	telnet %smtpserver% 25
+	helo %domain.com%
+	mail from: sender@domain.com
+	rcpt to:recipient@domain.com
+	data
+	this is test
+	.
+	Quit
+

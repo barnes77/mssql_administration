@@ -1,0 +1,22 @@
+﻿# C:\Windows\System32\drivers\etc\hosts
+All entries should be given in following order IP, FQDN, Hostname
+
+# Failover Cluster resources
+While adding a drive to a SQL Server Role a dependency should always be created - if there's none, SQL Server will not fail, but it won't be able to create new databases / new data files on the drive without a dependency
+
+# Consoles
+adsiedit.msc	ADSI Edit
+appwiz.cpl		Add/Remove Programs
+certlm			Certificate Management
+dfsmgmt.msc		DFS Management
+dhcpmgmt.msc	DHCP
+dnsmgmt.msc		DNS
+dsa.msc			Active Directory Users and Computers (ADUC)
+diskmgmt.msc	Disk Management
+dcomcnfg		Component Services
+domain.msc		Active Directory Domains and Trusts
+dssite.msc		Active Directory Sites and Services
+gpmc.msc		Group Policy Management Console
+lusrmgr			Local User Management
+ncpa.cpl		Network Properties control
+rsop.msc		Resultant Set of Policy

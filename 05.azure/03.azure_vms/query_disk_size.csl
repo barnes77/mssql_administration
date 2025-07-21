@@ -1,0 +1,7 @@
+//query from RK
+Perf
+| where ObjectName == "LogicalDisk"
+| where CounterName == "% Free Space"
+| where InstanceName == "C:"
+| summarize avg(CounterValue) by bin(TimeGenerated, 15min), Computer, _ResourceId // bin is used to set the time gran to 15 minutes
+| render timechart

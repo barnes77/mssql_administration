@@ -1,0 +1,5 @@
+﻿1. Check if the connection is open between host with SQL and target FTP
+2. Check if local account used in FTP Connection Manager can be authenticated against FTP from host running SQL
+3. Check if the step running SSIS package is using proxy with sysadmin credentials
+4. Check if DTExec.exe has an inbound rule in Firewall on the host running SSIS, if not create one
+

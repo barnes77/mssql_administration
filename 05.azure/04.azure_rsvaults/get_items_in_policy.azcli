@@ -1,0 +1,2 @@
+#find all backup items (sql databases)
+az backup item list -g MyRG -v MyVault --backup-management-type AzureWorkload --workload-type MSSQL

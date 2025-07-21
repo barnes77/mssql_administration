@@ -1,0 +1,44 @@
+﻿1. Verify writes via CMD Admin: vssadmin list writers
+2. Find failed writers
+3. Restart service corresponding to the Writer:
+	VSS Writer	>>	Service Name	>>	Service Display Name
+	ASR Writer	>>	VSS	>>	Volume Shadow Copy
+	BITS Writer	>>	BITS	>>	Background Intelligent Transfer Service
+	COM+ REGDB Writer	>>	VSS	>>	Volume Shadow Copy
+	DFS Replication service writer	>>	DFSR	>>	DFS Replication
+	DHCP Jet Writer	>>	DHCPServer	>>	DHCP Server
+	FRS Writer	>>	NtFrs	>>	File Replication
+	FSRM writer	>>	srmsvc	>>	File Server Resource Manager
+	IIS Config Writer	>>	AppHostSvc	>>	Application Host Helper Service
+	IIS Metabase Writer	>>	IISADMIN	>>	IIS Admin Service
+	Microsoft Exchange Writer	>>	MSExchangeIS	>>	Microsoft Exchange Information Store
+	Microsoft Hyper-V VSS Writer	>>	vmms	>>	Hyper-V Virtual Machine Management
+	NTDS	>>	NTDS	>>	Active Directory Domain Services
+	OSearch VSS Writer	>>	OSearch	>>	Office SharePoint Server Search
+	OSearch14 VSS Writer	>>	OSearch14	>>	SharePoint Server Search 14
+	Registry Writer	>>	VSS	>>	Volume Shadow Copy
+	Shadow Copy Optimization Writer	>>	VSS	>>	Volume Shadow Copy
+	SPSearch VSS Writer	>>	SPSearch	>>	Windows SharePoint Services Search
+	SPSearch4 VSS Writer	>>	SPSearch4	>>	SharePoint Foundation Search V4
+	SqlServerWriter	>>	SQLWriter	>>	SQL Server VSS Writer
+	System Writer	>>	CryptSvc	>>	Cryptographic Services
+	TermServLicensing	>>	TermServLicensing	>>	Remote Desktop Licensing
+	WINS Jet Writer	>>	WINS	>>	Windows Internet Name Service (WINS)
+	WMI Writer	>>	Winmgmt	>>	Windows Management Instrumentation
+
+In case of further issues (CPI2 event 513 Cryptographic Services failed while processing the OnIdentity() call in the System Writer Object.
+	Details:
+	AddLegacyDriverFiles: Unable to back up image of binary Microsoft Link-Layer Discovery Protocol.)
+
+1. Open an administrative Command Prompt window, and then run the following command to check the current permissions:
+	sc sdshow mslldp
+2. Copy the output string from step 1, append it with (A;;CCLCSWLOCRRC;;;SU), and then run the following command to add the access permission to Mslldp.dll:
+	sc sdset mslldp <string>
+	
+	For example, run the following command:
+	sc sdset mslldp D:(D;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BG)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)(A;;CCDCLCSWRPDTLOCRSDRC
+	
+Source:
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/backup-and-storage/event-id-513-vss-windows-server
+https://helpdesk.kaseya.com/hc/en-gb/articles/4407510090513-VSS-Writer-Failed-How-to-Restart-and-Re-Register-VSS-Writers
+

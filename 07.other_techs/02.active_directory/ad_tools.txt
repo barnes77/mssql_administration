@@ -1,0 +1,9 @@
+﻿Active Directory Users and Computers (ADUC)		dsa.msc
+Active Directory Administrative Center (ADAC)	
+Active Directory Domains and Trusts				domain.msc
+Active Directory Sites and Services				dssite.msc
+ADSI Edit										adsiedit.msc
+DFS Management									dfsmgmt.msc
+DHCP											dhcpmgmt.msc
+DNS												dnsmgmt.msc
+Group Policy Management Console					gpmc.msc

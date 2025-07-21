@@ -1,0 +1,23 @@
+﻿sqlcmd_login_to_instance
+	sqlcmd -E -S SERVERNAME\INSTANCENAME
+
+##############
+sqlcmd_exec_sql
+	sqlcmd -E -S SERVERNAME\INSTANCENAME -d %database% -Q "%QUERY,e.g. SELECT%"
+
+##############
+sqlcmd_exec_sql_file
+	sqlcmd -E -S SERVERNAME\INSTANCENAME -d %database% -i "FILEPATH_TO_SQL"
+
+##############
+sqlcmd_select_to_csv
+	sqlcmd -E -S SERVERNAME\INSTANCENAME -d %database% -Q "%QUERY,e.g. SELECT%" -s ";" -o "FILEPATH_TO_CSV" -W
+
+##############
+sqlcmd_select_to_txt_with_append
+	sqlcmd -E -S SERVERNAME\INSTANCENAME -d %database% -Q "%QUERY,e.g. SELECT%" >> "FILEPATH_TO_TXT"
+
+##############
+sqlcmd_select_to_txt_with_overwrite
+	sqlcmd -E -S SERVERNAME\INSTANCENAME -d %database% -Q "%QUERY,e.g. SELECT%" -o "FILEPATH_TO_TXT"
+

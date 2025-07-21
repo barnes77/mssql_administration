@@ -1,0 +1,40 @@
+﻿.\setup.exe
+/ACTION="AddNode"
+
+/QS *optional; will only show progress
+/Q *optional; won't show progress
+
+/UpdateEnabled=TRUE	*optional; if you want to slipstream updates
+/UpdateSource=".\Updates"	*optional; must exist
+
+/SUPPRESSPRIVACYSTATEMENTNOTICE="True"
+/IACCEPTSQLSERVERLICENSETERMS
+/USEMICROSOFTUPDATE="False"
+
+/FEATURES=SQLEngine,FullText,Conn,IS
+/INSTANCEDIR="C:\Program Files\Microsoft SQL Server"
+
+/INSTANCENAME=I01
+
+/SQLSVCACCOUNT="DOMAIN\SqlSvcEngAcc"	*not needed for Virtual Account
+/SQLSVCPASSWORD="password"	*not needed for gMSA and Virtual Account
+/SQLSVCSTARTUPTYPE="AUTOMATIC"
+/SQLTELSVCSTARTUPTYPE="DISABLED"
+
+/AGTSVCACCOUNT="DOMAIN\SqlSvcAgtAcc"	*not needed for Virtual Account
+/AGTSVCPASSWORD="password"	*not needed for gMSA and Virtual Account
+/AGTSVCSTARTUPTYPE="AUTOMATIC"
+
+/FTSVCACCOUNT="DOMAIN\SqlSvcFtAcc"	*not needed for Virtual Account
+/FTSVCPASSWORD="password"	*not needed for gMSA and Virtual Account
+
+/BROWSERSVCSTARTUPTYPE="AUTOMATIC"
+
+/SQLSVCINSTANTFILEINIT="True" 
+
+/FAILOVERCLUSTERGROUP="sql_cluster_name"
+/FAILOVERCLUSTERIPADDRESSES="IPv4;sql_cluster_ip;Cluster Network 2;255.255.255.0"
+/FAILOVERCLUSTERNETWORKNAME="sql_cluster_name"
+/CONFIRMIPDEPENDENCYCHANGE="False"
+
+/SkipRules=RebootRequiredCheck	*undocumented; to be taken

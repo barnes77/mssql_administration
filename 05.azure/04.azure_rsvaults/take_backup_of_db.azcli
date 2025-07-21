@@ -1,0 +1,8 @@
+#take full backup of database
+	az backup protection backup-now -g MyRG -v MyVault --backup-management-type AzureWorkload --workload-type MSSQL --backup-type Full --enable-compression true --container-name MyContainer --item-name MyItem
+ 
+#take diff backup of database
+	az backup protection backup-now -g MyRG -v MyVault --backup-management-type AzureWorkload --workload-type MSSQL --backup-type Differential --enable-compression true --container-name MyContainer --item-name MyItem
+ 
+#take log backup of database
+	az backup protection backup-now -g MyRG -v MyVault --backup-management-type AzureWorkload --workload-type MSSQL --backup-type Log --enable-compression true --container-name MyContainer --item-name MyItem

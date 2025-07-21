@@ -1,0 +1,15 @@
+﻿• Memory – Available MBytes	
+• Physical Disk – Avg. Disk sec/Read				*for each physical disk, skip the _Total
+• Physical Disk – Avg. Disk sec/Write				*for each physical disk, skip the _Total
+• Physical Disk – Disk Reads/sec					*for each physical disk, skip the _Total
+• Physical Disk – Disk Writes/sec					*for each physical disk, skip the _Total
+• Processor – % Processor Time						*for each CPU, skip the _Total
+• Process - % Processor Time
+• SQLServer: General Statistics – User Connections
+• SQLServer: Memory Manager – Memory Grants Pending
+• SQLServer: SQL Statistics – Batch Requests/sec
+• SQLServer: SQL Statistics – Compilations/sec
+• SQLServer: SQL Statistics – Recompilations/sec
+• System – Processor Queue Length
+
+More info: https://www.brentozar.com/archive/2006/12/dba-101-using-perfmon-for-sql-performance-tuning/
