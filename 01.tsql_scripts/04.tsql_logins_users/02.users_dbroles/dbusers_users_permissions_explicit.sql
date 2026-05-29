@@ -19,3 +19,4 @@ WHERE 1=1
 	AND OBJECT_NAME(dbper.major_id) IS NOT NULL
 	AND dbpri.[name] LIKE '%principalname%' --Comment out this condition to list all permissions on database level
 ORDER BY OBJECT_NAME(dbper.major_id) ASC;
+

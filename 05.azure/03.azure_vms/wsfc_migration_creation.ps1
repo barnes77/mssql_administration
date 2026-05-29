@@ -31,7 +31,7 @@
  
 #dummy script for creating WSFC cluster in Azure on Windows 2019 without Distributed Server Name
 #sqlha.com/configure-a-wsfc-in-azure-with-windows-server-2019-for-ags-and-fcis/
-	New-Cluster -Name WSFCName -Node nodelist -StaticAddress IPAddress -NoStorage -AdministrativeAccessPoint DNS -ManagementPointNetworkType Singleton
+	New-Cluster -Name WSFCName -Node nodelist -StaticAddress IPAddress -NoStorage -AdministrativeAccessPoint ActiveDirectoryAndDNS -ManagementPointNetworkType Singleton
  
 #forced creation of quorum with Cloud Witness by using particular security protocol (in script TLS 1.2 is used)
 #blog.sqlauthority.com/2019/01/04/sql-server-unable-to-set-cloud-witness-error-the-client-and-server-cannot-communicate-because-they-do-not-possess-a-common-algorithm/

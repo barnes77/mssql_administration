@@ -22,5 +22,5 @@ INNER JOIN msdb.dbo.backupmediafamily AS bmf ON bs.media_set_id = bmf.media_set_
 --Include this condition to get restores only for certain number of days
 WHERE 1=1
 	AND rh.restore_date > GETDATE()-30 
-	AND bs.database_name = 'dbname_here'
+	--AND bs.database_name = 'dbname_here'
 ORDER BY rh.restore_date DESC;
